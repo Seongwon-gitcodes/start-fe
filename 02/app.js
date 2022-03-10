@@ -5,17 +5,17 @@ console.log(name);
 
 //boolean
 var isMan = true;
-var isMane1 = "true";
+var isMan1 = "true";
 
 console.log(isMan);
-console.log(isMane2);
+console.log(isMan1);
 
 //function
 function log(str) {
     console.log(str);
 }
 
-log(hello);
+log('hello');
 
 // object
 var img = {};
@@ -32,10 +32,9 @@ console.log(arr);
 console.log(1 + 1);
 console.log(name + 'hello');
 
-
-/* object
-json 형식, api 통신을 할 경우에도 사용
-*/
+/** object
+ * json 형식, api 통신을 할 경우에도 사용
+ */
 var me = {
     age: 11,
     name: "aj",
@@ -46,3 +45,10 @@ var me = {
 };
 
 me.sayHello();
+
+
+/** array
+ * 
+ */
+var arr1 = [1,2,3,4,5];
+console.log(arr.length);

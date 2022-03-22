@@ -1,17 +1,20 @@
-// var count = [10,20,30,40,50,60,70,100];
-// for(var x in count) {
-//     var result = 0;
-//     result += x;    
-// }
-// avg = result/count.length;
-// console.log(avg)
-
-
-
-var todos = ['운동', '게임'];
-var updateTodo = '게임';
-var updateIndex = todos.findIndex(function(todo) {
-  return todo === updateTodo;
-});
-todos[updateIndex] = '공부';
-console.log(todos);
+while(true) {
+  var x = parseInt(prompt("첫 번째 숫자를 입력해주세요!"));
+  if(!isNaN(x)) {
+    break;
+  }
+}
+while(true) {
+  var y = parseInt(prompt("두 번째 숫자를 입력해주세요!"));
+  if(!isNaN(y)) {
+    break;
+  } 
+}
+while(true) {
+  var z = parseInt(prompt("세 번째 숫자를 입력해주세요!"));
+  if(!isNaN(z)) {
+    break;
+  }
+}
+var result = x + y + z;
+alert("숫자의 합은 " + result);

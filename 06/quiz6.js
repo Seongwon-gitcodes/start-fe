@@ -15,3 +15,6 @@ function gugudan(value) {
 }
 
 $btn.addEventListener('click', gugudan);
+
+
+

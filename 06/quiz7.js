@@ -34,3 +34,6 @@ function minusLife() {
 
 $bug.addEventListener('click', plusPoint);
 $box.addEventListener('click', minusLife);
+
+
+

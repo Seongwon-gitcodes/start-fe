@@ -11,7 +11,7 @@ function getFetch(url, callback) {
 // const url = `https://dapi.kakao.com/v2/search/web?query=#query&page=#pageNum`
 const $result = document.querySelector('#result')
 const $query = document.querySelector('[name="query"]')
-const $searchForm = document.querySelector('#searchForm')
+const $searchButton = document.querySelector('#searchButton')
 const $moreBtn = document.querySelector('#moreBtn')
 let pageNum = 1
 
@@ -36,13 +36,13 @@ function init() {
       $moreBtn.style.visibility = 'hidden'
   }
 
-  $searchForm.addEventListener('submit', e => {
-      e.preventDefault()
-      $result.innerHTML = ''
-      pageNum = 1
-      search(pageNum)
-      $moreBtn.style.visibility = 'visible'
-  })
+  $searchButton.addEventListener('click', e => {
+    e.preventDefault()
+    $result.innerHTML = ''
+    pageNum = 1
+    search(pageNum)
+    $moreBtn.style.visibility = 'visible'
+})
 
   $moreBtn.addEventListener('click', e => {
       e.preventDefault()

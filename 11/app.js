@@ -1,47 +1,55 @@
-const url = `https://dapi.kakao.com/v2/search/web?query=#query`
-
-const $docs = document.querySelector('#docs');
-const $query = document.querySelector('#query');
-const $searchButton = document.querySelector('#searchButton');
-
-
-
 function getFetch(url, callback) {
-    const headers = {
-        Authorization: `KakaoAK 973ef701a4e5f945ca3c5d02ab1d7d3d`
-    };
-
-    fetch(url, {headers})
-      .then((response) => response.json())
-      .then((data) => callback(data));
+  const headers = {
+      Authorization: 'KakaoAK ad1eb3ae6a7731c9d17a6c0f88a5fed6',
   }
 
-  function search() {
-    const query = $query.value;
-    const searchUrl = url.replace('#query', query);
-    // url = url.replace('#query', query);
-  
-    getFetch(searchUrl, (data) => {
-      const { documents } = data;
-      // const documents = data.documents;
-      console.log(documents);
-  
-      const docs = documents.map((document) => {
-        // console.log(document);
-        return document.contents;
-      });
-  
-      // console.log(docs);
-      $docs.innerHTML = docs.join('<hr>');
-    });
+  fetch(url, {headers})
+      .then(response => response.json())
+      .then(data => callback(data))
+}
+
+// const url = `https://dapi.kakao.com/v2/search/web?query=#query&page=#pageNum`
+const $result = document.querySelector('#result')
+const $query = document.querySelector('[name="query"]')
+const $searchForm = document.querySelector('#searchForm')
+const $moreBtn = document.querySelector('#moreBtn')
+let pageNum = 1
+
+function search(page) {
+  const query = $query.value
+
+  // const searchUrl = url.replace('#query', query)
+  const searchUrl = `https://dapi.kakao.com/v2/search/web?query=${query}&page=${page}`
+
+  getFetch(searchUrl, data => {
+      const {documents} = data
+      const result = documents.map(document => {
+          return document.contents
+      })
+
+      $result.innerHTML += result.join('<hr/>')
+  })
+}
+
+function init() {
+  if ($result.innerHTML === '') {
+      $moreBtn.style.visibility = 'hidden'
   }
 
-$searchButton.addEventListener('click', search);
-$query.addEventListener('keydown', (event) => {
-if (event.key !== 'Enter') return;
-search();
+  $searchForm.addEventListener('submit', e => {
+      e.preventDefault()
+      $result.innerHTML = ''
+      pageNum = 1
+      search(pageNum)
+      $moreBtn.style.visibility = 'visible'
+  })
 
-// if (event.key === 'Enter') {
-//   search();
-// }
-});
+  $moreBtn.addEventListener('click', e => {
+      e.preventDefault()
+      $result.innerHTML += `<hr/>`
+      pageNum += 1
+      search(pageNum)
+  })
+}
+
+init()
